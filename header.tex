@@ -1,0 +1,283 @@
+%%
+%% Header file including short descriptions of packages
+%% preferably to be used for natural sciences and such:
+%%    computer science, electrical engineering, physics, maths
+%%
+%% Author: Markus Meissner <coder@safemailbox.de>
+%% License: BSD
+%%
+
+\documentclass[a4paper,11pt]{book}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CITATION 
+\usepackage{cite}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ENCODING AND LANGUAGE
+
+% utf8x behaves way better for obscure c&p unicode chars!
+% (texlive-extra package may be needed)
+%\usepackage[utf8]{inputenc} 
+\usepackage[utf8x]{inputenc}
+\usepackage[USenglish,ngerman]{babel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% GRAPHICS / PICTURES / COLORS
+
+% use only __ONE__ of the following:
+% always implicitly included inside the other
+%\usepackage[dvips]{graphicx}
+% - OR
+% only 'ps' drawing package tikz replacement 
+%\usepackage{pstricks}
+% - OR
+% drawing package, successor of pstricks and 'pdflatex' compatible
+%\usepackage{tikz}
+% - OR
+% drawing circuits package, including 'tikz'
+\usepackage[european]{circuitikz}
+
+% drawing supplemental stuff (dependencies!)
+\usepackage{pgfplots}
+\usepackage{xcolor}
+\usepackage{menukeys}
+
+% define aliases for colors using RGB
+\definecolor{blueish}{rgb}{.4,.4,.9}
+\definecolor{grey}{rgb}{.6,.6,.6}
+\definecolor{darkblue}{rgb}{.0,.0,.3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TODO NOTES (provides \missingfigure  \todo)
+
+% disabled
+%\usepackage[disable]{todonotes}
+% enabled
+\usepackage{todonotes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% GRAPHICS / DRAWING CONFIGURATION
+
+% default path/suffix for graphics
+\graphicspath{{pics/}}
+\DeclareGraphicsExtensions{.eps}
+
+% declare layers - for (circui)tikz
+\pgfdeclarelayer{bg}    
+\pgfdeclarelayer{top}
+% set the order of the layers (main is the standard layer)
+\pgfsetlayers{bg,main,top}  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MATH STUFF 
+
+% math symbols (always keep this!)
+\usepackage{amsmath}
+
+% create own "theorem" environments
+\usepackage{amsthm}
+% \begin{mydef}[My optional theorem desc] <theorem body> \end{mydef}
+\newtheorem{mydef}{Definition}
+
+% allow arbitrary rotating of any element
+%\usepackage{rotating}
+
+% allow multi-page tables
+\usepackage{longtable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FONTS / UNITS
+
+% Palatino font family for maths
+%\usepackage{mathpazo}
+
+% ams (additional) fonts
+\usepackage{amssymb}
+
+% various unit related typesetting
+\usepackage{siunitx}
+
+% import courier font
+%\usepackage{courier}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EXTENSIONS FOR EXISTING ENVS
+
+% more column options for tabular and array env
+\usepackage{array}
+
+% allow cells in tabular to span across multiple rows
+%\usepackage{multirow}
+
+% allow switching between regular and multicol writing (clashes with longtable)
+%\usepackage{multicol}
+
+% balancing multiple columns 
+%\usepackage{balance}
+
+% advanced tabular env allowing setting of column types
+%\usepackage{tabularx}
+% the three usual columntypes extended with a width setting
+%\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}   % left-aligned 
+%\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}     % centered
+%\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}    % right-aligned 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FLOAT / SUBFIGURES / FIGURES
+
+% subfigures all-in-one packages, do not use subfigure package!
+% to use:  \subcaptionbox{<subcaption>}[<subfigure width>]{\includegraphics{}}
+% e.g.,    \subcaptionbox{hello}[.5\linewidth]{\includegraphics{pics/foo.eps}}
+\usepackage{caption}
+\usepackage[font=footnotesize]{subcaption}
+
+% change the figure caption format/layout
+%\captionnamefont{\bfseries}
+%\captiontitlefont{\slshape}
+%\captiondelim{:\ }
+%\hangcaption
+%\renewcommand{\figurename}{Figure}
+
+% allow more float settings and tools
+%\usepackage{floatrow}
+
+% float env, mainly provides 'H' placement in figures 
+\usepackage{float}
+
+% wrap figures (let text flow around)
+\usepackage{wrapfig}
+
+% allow replacement of "tags" inside EPS files with arbitrary latex stuff
+%\usepackage{psfrag}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HYPERLINKS IN DOCUMENT
+
+% make links, urls, cites, TOCs-lines clickable inside the document
+\usepackage{hyperref}
+\hypersetup{
+	dvips,                        % latex mode
+	breaklinks=true,              % allow line breaking links
+	colorlinks,                   % removes frame around links
+        linkcolor={blue!60!black},    
+	filecolor={blue!60!black},
+        citecolor={blue!60!black},
+        urlcolor={blue!60!black}
+}
+% allows line-breaking for urls/links and alike
+\usepackage{breakurl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% WHITE SPACES 
+
+% smart adding white space after \stuff (string-only) commands
+% e.g., \newcommand{foo}{just a string}
+\usepackage{xspace}
+
+% line spacing package (spreads lines, useful for reviewing)
+%\usepackage{setspace}
+%\linespread{2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LAYOUT AND FORMATTING
+
+% allows an quote on the chapter title page, (\savequote, \qauthor}
+% and changes chapter numbering font use one of these fonts: 
+%   avantgarde, bera{mono,sans}, biolinum, bookman, charter, courier, 
+%   helvetica, kpfonts, libertine, lmodern, newcentury, palatino, times, utopia
+%\usepackage[bookman]{quotchap}
+
+% provides 7 predefined chaper header layouts, fully overrules 'quotchap' pkg
+% use one of: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+\usepackage[Bjarne]{fncychap}
+
+% "Schusterjungen", "Hurenkinder" rules, 
+% forbid single lines from last/next paragraphs on previous/next page
+\clubpenalty = 10000
+\widowpenalty = 10000 
+\displaywidowpenalty = 10000
+
+% page size configuration
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.0cm}
+\setlength{\topmargin}{0.1cm}
+\setlength{\topskip}{0.4cm}
+\setlength{\footskip}{1.5cm} 
+\setlength{\oddsidemargin}{-0.05cm}
+\setlength{\evensidemargin}{-0.05cm}
+
+% depth of the section numbering
+\setcounter{secnumdepth}{5} 
+% maximum depth of shown items inside the table of contents
+\setcounter{tocdepth}{3}
+
+% change chapter-/sectionmark style
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ \ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ \ #1}{}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FANCY PAGESTYLE FOR FULLY CUSTOM HEADINGS / FOOTERS
+\usepackage{fancyhdr}
+
+% sets the current page style 
+% use one of: plain, headings, empty, myheadings
+% 'fancyhdr' package adds page style 'fancy' 
+\pagestyle{fancy}
+
+% once pagestyle is fancy, use the following header/footer settings:
+% clear all headers/footers
+\fancyhf{}
+
+% an (open) book has even page numbers (left page) and odd ones (right page)
+%
+% header |  EL  EC  ER  |  OL  OC  OR |
+% body           < my body text >
+% footer |  EL  EC  ER  |  OL  OC  OR |
+
+\fancyhead[EL,OR]{\nouppercase{\textsc{\rightmark}}}
+
+% header/footer ruler widths may be changed
+%\renewcommand{\headrulewidth}{}
+%\renewcommand{\footrulewidth}{}
+
+% redefining 'plain' as \section, \chapter call \thispagestyle{plain} 
+%\fancypagestyle{plain} {
+%   \fancyhead...
+%   \fancyfoot...
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SOURCE(CODE) TYPESETTING
+
+% a verbatim env with embedded math 
+%\usepackage{alltt}
+
+% provides algorithm env mainly for pseudocode listings 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% alternative to algorithm (more customizable}
+%\usepackage{algorithm2e}
+
+% allow drawing of Nassi-Shneiderman (algorithm diagrams)
+%\usepackage{struktex}
+
+% provides \url to typeset the very same (and allow line breaks)
+\usepackage{url}
+
+% sourcecode listings 
+\usepackage{listings}
+% set custom style(s) for listings (see listings.pdf on ctan)
+% \lstdefinestyle{mystylename}{key=value}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% own cmds
+%\input{my_commands.tex}
+
+% config specific to tikz 
+%\input{tikz_config.tex}
+
+\begin{document}
